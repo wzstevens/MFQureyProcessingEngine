@@ -1,0 +1,84 @@
+class SalesRecord{
+		//getters and setters
+		String getCust() {
+			return cust;
+		}
+		void setCust(String cust) {
+			this.cust = cust;
+		}
+
+		String getProd() {
+			return prod;
+		}
+		void setProd(String prod) {
+			this.prod = prod;
+		}
+
+		String getState() {
+			return state;
+		}
+		void setState(String state) {
+			this.state = state;
+		}
+
+		int getMonth() {
+			return month;
+		}
+		void setMonth(int month) {
+			this.month = month;
+		}
+
+		int getDay() {
+			return day;
+		}
+		void setDay(int day) {
+			this.day = day;
+		}
+
+		int getYear() {
+			return year;
+		}
+		void setYear(int year) {
+			this.year = year;
+		}
+
+		int getQuant() {
+			return quant;
+		}
+		void setQuant(int quant) {
+			this.quant = quant;
+		}
+
+		//attributes
+		String cust="";
+		String prod="";
+		String state="";		
+		int month=0;
+		int day=0;
+		int year=0;
+		int quant=0;
+	}
+
+
+class TotalAmountCount{
+		int getTotalSaleQuant() {
+			return totalSaleQuant;
+		}
+		void setTotalSaleQuant(int totalSaleQuant) {
+			this.totalSaleQuant = totalSaleQuant;
+		}
+		int getTotalSaleCount() {
+			return totalSaleCount;
+		}
+		void setTotalSaleCount(int totalSaleCount) {
+			this.totalSaleCount = totalSaleCount;
+		}
+		double getAvg() {//calculate average.
+			avg = (double)totalSaleQuant/(double)totalSaleCount;
+			return avg;
+		}
+		
+		int totalSaleQuant=0;
+		int totalSaleCount=0;
+		double avg=0.0;
+	}

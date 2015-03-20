@@ -1,0 +1,7 @@
+				aSale.setCust(rset.getString(1).trim()); // get cust trim it in case there are space there.
+				aSale.setProd(rset.getString(2).trim()); //prod
+				aSale.setDay(rset.getInt(3)); //date
+				aSale.setMonth(rset.getInt(4)); //month
+				aSale.setYear(rset.getInt(5)); //year
+				aSale.setState(rset.getString(6).trim()); //state
+				aSale.setQuant(rset.getInt(7)); //quant

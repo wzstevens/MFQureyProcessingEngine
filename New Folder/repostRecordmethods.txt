@@ -1,0 +1,8 @@
+			setCust(aSale.getCust());
+			setProd(aSale.getProd());
+			setState(aSale.getState());
+			setDay(aSale.getDay());
+			setMonth(aSale.getMonth());
+			setYear(aSale.getYear());
+			setQuant(aSale.getQuant());
+			totalCount +=1;

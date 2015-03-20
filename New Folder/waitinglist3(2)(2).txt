@@ -1,0 +1,13 @@
+} catch (Exception e1) {
+			e1.printStackTrace();
+			System.out.println("can't found file: "+custProdReportFile);
+			report1Out.checkError();
+			//report2Out.checkError();
+			System.exit(1);
+		}
+		report1Out.flush();
+		report1Out.flush();
+
+		
+		log.exiting("processSalesRecords", "createCustomerProductReports");
+	}

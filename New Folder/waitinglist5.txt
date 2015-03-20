@@ -1,0 +1,25 @@
+//attributes
+		String cust="";
+		String prod="";
+		String state="";		
+		//String saleDate = "";
+		int day=0;
+		int month=0;
+		int year=0;
+		int quant=0;
+		int max=0;
+		int min=0;
+		int avg=0;
+		int cnt=0;
+		
+		int totalCount=0;
+		double totalSales=0.0;
+
+	//	Map<String, TotalAmountCount> stateAvg; //save the average for each state.
+		
+		//constructor
+		public ReportRecord(SalesRecord aSale) {
+			setCust(aSale.getCust());
+			setProd(aSale.getProd());
+			setState(aSale.getState());
+		

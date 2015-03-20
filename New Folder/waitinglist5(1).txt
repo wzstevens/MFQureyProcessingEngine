@@ -1,0 +1,47 @@
+}
+
+		String getCust() {
+			return cust;
+		}
+		void setCust(String cust) {
+			this.cust = cust;
+		}
+
+		int getDay() {
+			return day;
+		}
+		void setDay(int day) {
+			this.day = day;
+		}
+		int getQuant() {
+			return quant;
+		}
+		void setQuant(int quant) {
+			this.quant = quant;
+		}
+		int getMonth() {
+			return month;
+		}
+		void setMonth(int month) {
+			this.month = month;
+		}
+		int getYear() {
+			return year;
+		}
+		void setYear(int year) {
+			this.year = year;
+		}
+		String getProd() {
+			return prod;
+		}
+		void setProd(String prod) {
+			this.prod = prod;
+		}
+		String getState() {
+			return state;
+		}
+		void setState(String state) {
+			this.state = state;
+		}				
+
+		void updateSales(SalesRecord aSale) {

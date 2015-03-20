@@ -1,0 +1,2 @@
+		int totalCount=0;
+		int totalSales=0;

@@ -1,0 +1,116 @@
+   
+	}
+
+	void init(String propertiesFile){      
+        props = new Properties(); //load property file
+        
+        try {
+            props.load(new FileInputStream(propertiesFile));
+        } catch (IOException e) {
+            System.out.println("Program cannot run without a properties file");
+            e.printStackTrace();
+           System.exit(1);
+        }
+        
+        //file for logger outputs
+        logFileName = props.getProperty("logFileName", "SALES.LOG");
+        logLevel = props.getProperty("logLevel", "INFO"); //default to INFO 
+        custProdReportFile = props.getProperty("custProdReportFile", "CUSTPROD.txt");
+        
+        
+		try {
+			hand = new FileHandler(logFileName);
+			log = Logger.getLogger("ProductSaleRecords");
+			log.addHandler(hand);
+			log.setLevel(Level.parse(logLevel));		      
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			System.exit(1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		connectSalesDb();
+	}
+	void connectSalesDb(){
+		salesDbUrl = props.getProperty("salesDbUrl");
+		salesDbDriver = props.getProperty("salesDbDriver");
+		salesDbUser = props.getProperty("salesDbUser");
+		salesDbPwd = props.getProperty("salesDbPwd");
+
+		log.info("connect to: "+ salesDbUrl);
+		try{
+			Class.forName(salesDbDriver);
+			salesDBConnection = DriverManager.getConnection(salesDbUrl, salesDbUser, salesDbPwd);
+
+		} catch (java.lang.ClassNotFoundException e)
+		{
+			log.severe("fail to connect to sales databases." );
+		} catch (SQLException e) {
+			log.severe("SQL STATE: " + e.getSQLState());
+			log.severe("ERROR CODE: " + e.getErrorCode());
+			log.severe("MESSAGE: " + e.getMessage());
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+
+// retrieve data from sales table and group data by customer and product.
+	public static void Convert(String input)
+    {
+        int tmp=0;
+        int tmpp=0;
+		String Rtu="";
+		String temp="";
+        ArrayList list=new ArrayList();
+       while(tmp<input.length()){
+    	   if(input.substring(tmp, tmp+1).equals("|")){
+    		   list.add(input.substring(tmpp, tmp));
+    		   tmpp=tmp+1;
+    	   }
+    	   else if(tmp==input.length()-1){
+    		   list.add(input.substring(tmpp, input.length()));
+    	   }
+    	   tmp++;    	   
+       }
+       for(int i=0;i<list.size();i++){
+    	   temp=list.get(i).toString();
+    	   if(temp.length()<7){
+               for (int length=0;length<7-temp.toString().length();length++)
+               {
+                   temp=temp+" ";
+               } 
+               list.set(i, temp);
+    	   }
+    	   
+       }
+       for(int in=0;in<list.size();in++){
+    	   Rtu=Rtu+list.get(in);
+       }
+       for(int i=0;i<list.size();i++){
+    	   System.out.printf("%-7s",list.get(i).toString());
+       }
+       System.out.print("  ");
+
+    }
+
+	
+// retrieve data from sales table and group data by customer and product.
+	private void processSales(){
+		ResultSet rset;
+		log.entering("ProductSaleRecords", "processSalesRecords");
+		String sql;
+		SalesRecord aSale = null;
+		String customerProduct=""; //customer and product key.
+		
+		sql = "select * from sales";
+
+		log.info(sql);  
+
+		ArrayList<String> mapkey = new ArrayList<String>();
+
+		try {
+			rset = salesDBConnection.createStatement().executeQuery(sql);
+			while(rset.next()){
+				aSale = new SalesRecord();
+				

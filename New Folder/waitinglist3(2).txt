@@ -1,0 +1,9 @@
+//here all the data from database table sales are processed. need print them out
+
+		//createCustomerProductReports();
+		
+		System.out.println("Reports genrated.");		
+		log.exiting("processSalesRecords", "processSalesRecords");
+//	}
+//	generate customer product report
+	

@@ -1,0 +1,20 @@
+FileHandler hand;
+	Logger log;
+	String logLevel="1000";
+	Properties props;
+	String logFileName = "";
+
+	String custProdReportFile;  //save report to plain text file
+    
+	public static void main(String[] args) {
+		ProductSaleRecords sale = new ProductSaleRecords();
+        if (args.length < 1) {
+            System.out.println("Usage: \r\n Correct parameters is:" + "<SalesPropertyFile>");
+            System.exit(1);
+        }
+        System.out.println("Starting ProductSaleRecords ...");
+		sale.init(args[0]);
+		sale.processSales();
+	}
+	
+	ProductSaleRecords() {//constructor.

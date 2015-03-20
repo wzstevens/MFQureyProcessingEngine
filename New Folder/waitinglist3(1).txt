@@ -1,0 +1,26 @@
+
+				
+				}
+				aSale = null;
+			}
+		} catch (SQLException e) {
+			log.severe("SQL STATE: " + e.getSQLState());
+			log.severe("ERROR CODE: " + e.getErrorCode());
+			log.severe("MESSAGE: " + e.getMessage());
+			e.printStackTrace();
+			try {
+				salesDBConnection.close();//release resource
+			} catch (SQLException e1) {
+				log.severe(" Failed to close database connection.");
+				e1.printStackTrace();
+			} 
+			System.exit(1);
+		}finally{
+			try {
+				salesDBConnection.close();
+			} catch (SQLException e) {
+				log.severe(" Failed to close database connection. Can't release resource.");
+				e.printStackTrace();
+			}//release resource
+		}
+		

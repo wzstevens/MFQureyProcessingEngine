@@ -1,0 +1,8 @@
+//attributes
+		String cust="";
+		String prod="";
+		String state="";
+		int day = 0;
+		int month = 0;
+		int year = 0;
+		int quant = 0;		
